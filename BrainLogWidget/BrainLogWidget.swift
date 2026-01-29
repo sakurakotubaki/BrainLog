@@ -9,6 +9,30 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
+// MARK: - Item Model (shared with main app)
+@Model
+final class Item {
+    var id: UUID = UUID()
+    var content: String = ""
+    var createdAt: Date = Date()
+    var updatedAt: Date = Date()
+    var parentID: UUID?
+    var branchName: String?
+
+    init(
+        content: String,
+        parentID: UUID? = nil,
+        branchName: String? = nil
+    ) {
+        self.id = UUID()
+        self.content = content
+        self.createdAt = Date()
+        self.updatedAt = Date()
+        self.parentID = parentID
+        self.branchName = branchName
+    }
+}
+
 // MARK: - Timeline Entry
 struct CommitEntry: TimelineEntry {
     let date: Date
@@ -55,6 +79,8 @@ struct Provider: TimelineProvider {
         do {
             let configuration = ModelConfiguration(
                 isStoredInMemoryOnly: false,
+                allowsSave: false,
+                groupContainer: .identifier("group.com.junichihashimoto.BrainLog"),
                 cloudKitDatabase: .automatic
             )
             let container = try ModelContainer(for: Item.self, configurations: configuration)
