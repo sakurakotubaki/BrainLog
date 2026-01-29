@@ -142,7 +142,6 @@ struct BrainLogWidgetEntryView: View {
 // MARK: - Small Widget
 struct SmallWidgetView: View {
     let entry: CommitEntry
-    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -152,6 +151,7 @@ struct SmallWidgetView: View {
                 Text("BrainLog")
                     .font(.system(.caption, design: .monospaced))
                     .fontWeight(.semibold)
+                    .foregroundStyle(.white)
             }
 
             if let latestCommit = entry.commits.first {
@@ -168,37 +168,37 @@ struct SmallWidgetView: View {
                     Text(latestCommit.content)
                         .font(.system(.caption, design: .monospaced))
                         .lineLimit(2)
-                        .foregroundStyle(primaryTextColor)
+                        .foregroundStyle(.white)
 
                     Text(relativeDate(latestCommit.createdAt))
                         .font(.caption2)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(secondaryTextColor)
                 }
             } else {
                 Text("No commits yet")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(secondaryTextColor)
             }
 
             Spacer()
 
             Text("\(entry.totalCount) commits")
                 .font(.caption2)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(secondaryTextColor)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var nodeColor: Color {
-        colorScheme == .dark ? Color(hex: "238636") : Color(hex: "1a7f37")
+        Color(hex: "238636")
+    }
+
+    private var secondaryTextColor: Color {
+        Color(hex: "8b949e")
     }
 
     private var hashColor: Color {
-        colorScheme == .dark ? Color(hex: "58a6ff") : Color(hex: "0969da")
-    }
-
-    private var primaryTextColor: Color {
-        colorScheme == .dark ? .white : .black
+        Color(hex: "58a6ff")
     }
 
     private func relativeDate(_ date: Date) -> String {
@@ -211,7 +211,6 @@ struct SmallWidgetView: View {
 // MARK: - Medium Widget
 struct MediumWidgetView: View {
     let entry: CommitEntry
-    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -221,17 +220,18 @@ struct MediumWidgetView: View {
                 Text("BrainLog")
                     .font(.system(.subheadline, design: .monospaced))
                     .fontWeight(.semibold)
+                    .foregroundStyle(.white)
                 Spacer()
                 Text("\(entry.totalCount) commits")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(secondaryTextColor)
             }
 
             if entry.commits.isEmpty {
                 Spacer()
                 Text("No commits yet")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(secondaryTextColor)
                     .frame(maxWidth: .infinity)
                 Spacer()
             } else {
@@ -247,7 +247,7 @@ struct MediumWidgetView: View {
                             Text(commit.content)
                                 .font(.system(.caption, design: .monospaced))
                                 .lineLimit(1)
-                                .foregroundStyle(primaryTextColor)
+                                .foregroundStyle(.white)
 
                             HStack(spacing: 6) {
                                 Text(commit.hash)
@@ -255,7 +255,7 @@ struct MediumWidgetView: View {
                                     .foregroundStyle(hashColor)
                                 Text(relativeDate(commit.createdAt))
                                     .font(.caption2)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(secondaryTextColor)
                             }
                         }
                         Spacer()
@@ -266,21 +266,10 @@ struct MediumWidgetView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var nodeColor: Color {
-        colorScheme == .dark ? Color(hex: "238636") : Color(hex: "1a7f37")
-    }
-
-    private var branchColor: Color {
-        colorScheme == .dark ? Color(hex: "a371f7") : Color(hex: "8250df")
-    }
-
-    private var hashColor: Color {
-        colorScheme == .dark ? Color(hex: "58a6ff") : Color(hex: "0969da")
-    }
-
-    private var primaryTextColor: Color {
-        colorScheme == .dark ? .white : .black
-    }
+    private var nodeColor: Color { Color(hex: "238636") }
+    private var branchColor: Color { Color(hex: "a371f7") }
+    private var hashColor: Color { Color(hex: "58a6ff") }
+    private var secondaryTextColor: Color { Color(hex: "8b949e") }
 
     private func relativeDate(_ date: Date) -> String {
         let formatter = RelativeDateTimeFormatter()
@@ -292,7 +281,6 @@ struct MediumWidgetView: View {
 // MARK: - Large Widget
 struct LargeWidgetView: View {
     let entry: CommitEntry
-    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -302,23 +290,25 @@ struct LargeWidgetView: View {
                 Text("BrainLog")
                     .font(.system(.headline, design: .monospaced))
                     .fontWeight(.semibold)
+                    .foregroundStyle(.white)
                 Spacer()
                 Text("\(entry.totalCount) commits")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(secondaryTextColor)
             }
 
             Divider()
+                .background(lineColor)
 
             if entry.commits.isEmpty {
                 Spacer()
                 VStack(spacing: 8) {
                     Image(systemName: "point.topleft.down.to.point.bottomright.curvepath")
                         .font(.largeTitle)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(secondaryTextColor)
                     Text("No commits yet")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(secondaryTextColor)
                 }
                 .frame(maxWidth: .infinity)
                 Spacer()
@@ -341,7 +331,7 @@ struct LargeWidgetView: View {
                             Text(commit.content)
                                 .font(.system(.subheadline, design: .monospaced))
                                 .lineLimit(2)
-                                .foregroundStyle(primaryTextColor)
+                                .foregroundStyle(.white)
 
                             HStack(spacing: 8) {
                                 Text(commit.hash)
@@ -349,7 +339,7 @@ struct LargeWidgetView: View {
                                     .foregroundStyle(hashColor)
                                 Text(relativeDate(commit.createdAt))
                                     .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(secondaryTextColor)
                             }
                         }
                         Spacer()
@@ -363,25 +353,11 @@ struct LargeWidgetView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var nodeColor: Color {
-        colorScheme == .dark ? Color(hex: "238636") : Color(hex: "1a7f37")
-    }
-
-    private var branchColor: Color {
-        colorScheme == .dark ? Color(hex: "a371f7") : Color(hex: "8250df")
-    }
-
-    private var lineColor: Color {
-        colorScheme == .dark ? Color(hex: "30363d") : Color(hex: "d0d7de")
-    }
-
-    private var hashColor: Color {
-        colorScheme == .dark ? Color(hex: "58a6ff") : Color(hex: "0969da")
-    }
-
-    private var primaryTextColor: Color {
-        colorScheme == .dark ? .white : .black
-    }
+    private var nodeColor: Color { Color(hex: "238636") }
+    private var branchColor: Color { Color(hex: "a371f7") }
+    private var lineColor: Color { Color(hex: "30363d") }
+    private var hashColor: Color { Color(hex: "58a6ff") }
+    private var secondaryTextColor: Color { Color(hex: "8b949e") }
 
     private func relativeDate(_ date: Date) -> String {
         let formatter = RelativeDateTimeFormatter()
@@ -479,11 +455,11 @@ struct BrainLogWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 BrainLogWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
+                    .containerBackground(Color(hex: "0d1117"), for: .widget)
             } else {
                 BrainLogWidgetEntryView(entry: entry)
                     .padding()
-                    .background()
+                    .background(Color(hex: "0d1117"))
             }
         }
         .configurationDisplayName("BrainLog")
