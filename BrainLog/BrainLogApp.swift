@@ -31,7 +31,7 @@ struct BrainLogApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
                 .onDisappear {
                     WidgetCenter.shared.reloadAllTimelines()
                 }

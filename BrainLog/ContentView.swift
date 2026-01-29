@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var selectedItem: Item?
     @State private var reflectionFromItem: Item?
     @State private var showingHelp = false
+    @State private var languageManager = LanguageManager.shared
 
     var body: some View {
         NavigationStack {
@@ -29,7 +30,7 @@ struct ContentView: View {
                     commitTreeView
                 }
             }
-            .navigationTitle("BrainLog")
+            .navigationTitle("app_title".localized())
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: { showingHelp = true }) {
@@ -67,15 +68,15 @@ struct ContentView: View {
             Image(systemName: "point.topleft.down.to.point.bottomright.curvepath")
                 .font(.system(size: 48))
                 .foregroundStyle(.secondary)
-            Text("No entries yet")
+            Text("no_entries_title".localized())
                 .font(.headline)
                 .foregroundStyle(primaryTextColor)
-            Text("Tap + to create your first commit")
+            Text("no_entries_subtitle".localized())
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
 
             Button(action: { showingHelp = true }) {
-                Label("How to use", systemImage: "questionmark.circle")
+                Label("help_title".localized(), systemImage: "questionmark.circle")
                     .font(.subheadline)
             }
             .padding(.top, 8)
@@ -146,36 +147,36 @@ struct HelpView: View {
                         helpSection(
                             icon: "plus.circle.fill",
                             iconColor: .green,
-                            title: "Create an Entry",
-                            description: "Tap the + button to create a new entry. Each entry is a snapshot of your thoughts at a moment in time."
+                            title: "help_create_title".localized(),
+                            description: "help_create_description".localized()
                         )
 
                         helpSection(
                             icon: "bubble.left.and.text.bubble.right.fill",
                             iconColor: .purple,
-                            title: "Add Reflection",
-                            description: "Long press on any entry to add a reflection. Reflections are for looking back - add insights, lessons learned, or how you feel about a past thought."
+                            title: "help_reflection_title".localized(),
+                            description: "help_reflection_description".localized()
                         )
 
                         helpSection(
                             icon: "hand.tap.fill",
                             iconColor: .blue,
-                            title: "View Details",
-                            description: "Tap on any commit to view its full content, edit it, or delete it."
+                            title: "help_view_title".localized(),
+                            description: "help_view_description".localized()
                         )
 
                         helpSection(
                             icon: "trash.fill",
                             iconColor: .red,
-                            title: "Delete",
-                            description: "Swipe left on an entry to delete it, or use the delete button in the detail view. Deleting an entry also removes its reflections."
+                            title: "help_delete_title".localized(),
+                            description: "help_delete_description".localized()
                         )
 
                         helpSection(
                             icon: "icloud.fill",
                             iconColor: .cyan,
-                            title: "iCloud Sync",
-                            description: "Your entries are automatically synced across all your devices via iCloud."
+                            title: "help_sync_title".localized(),
+                            description: "help_sync_description".localized()
                         )
 
                         Spacer(minLength: 40)
@@ -183,11 +184,11 @@ struct HelpView: View {
                     .padding()
                 }
             }
-            .navigationTitle("How to Use")
+            .navigationTitle("help_title".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                    Button("action_done".localized()) { dismiss() }
                 }
             }
         }
@@ -265,15 +266,15 @@ struct CommitNodeView: View {
         .onTapGesture(perform: onTap)
         .contextMenu {
             Button(action: onReflection) {
-                Label("Add Reflection", systemImage: "bubble.left.and.text.bubble.right")
+                Label("action_add_reflection".localized(), systemImage: "bubble.left.and.text.bubble.right")
             }
             Button(role: .destructive, action: onDelete) {
-                Label("Delete", systemImage: "trash")
+                Label("action_delete".localized(), systemImage: "trash")
             }
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button(role: .destructive, action: onDelete) {
-                Label("Delete", systemImage: "trash")
+                Label("action_delete".localized(), systemImage: "trash")
             }
         }
     }
@@ -435,7 +436,7 @@ struct ReflectionNodeView: View {
     private var reflectionContentView: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 4) {
-                Text("Reflection")
+                Text("reflection_label".localized())
                     .font(.caption2)
                     .fontWeight(.medium)
                     .foregroundStyle(reflectionNodeColor)
@@ -508,14 +509,14 @@ struct NewEntryView: View {
                 }
                 .padding()
             }
-            .navigationTitle("New Entry")
+            .navigationTitle("new_entry_title".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button("action_cancel".localized()) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    Button("action_save".localized()) {
                         saveEntry()
                     }
                     .disabled(content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
@@ -567,7 +568,7 @@ struct NewReflectionView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     // Original entry preview
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Reflecting on:")
+                        Text("reflecting_on".localized())
                             .font(.caption)
                             .foregroundStyle(.secondary)
 
@@ -580,7 +581,7 @@ struct NewReflectionView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
 
-                    Text("Your reflection:")
+                    Text("your_reflection".localized())
                         .font(.caption)
                         .foregroundStyle(.secondary)
 
@@ -598,14 +599,14 @@ struct NewReflectionView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Add Reflection")
+            .navigationTitle("new_reflection_title".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button("action_cancel".localized()) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    Button("action_save".localized()) {
                         saveReflection()
                     }
                     .disabled(content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
@@ -684,7 +685,7 @@ struct EntryDetailView: View {
                             Button(role: .destructive) {
                                 showDeleteConfirmation = true
                             } label: {
-                                Label("Delete Entry", systemImage: "trash")
+                                Label("delete_entry_button".localized(), systemImage: "trash")
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(.bordered)
@@ -693,35 +694,35 @@ struct EntryDetailView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Entry Details")
+            .navigationTitle("entry_detail_title".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Close") { dismiss() }
+                    Button("action_close".localized()) { dismiss() }
                 }
                 ToolbarItem(placement: .primaryAction) {
                     if isEditing {
-                        Button("Save") {
+                        Button("action_save".localized()) {
                             item.content = editedContent
                             item.updatedAt = Date()
                             isEditing = false
                         }
                     } else {
-                        Button("Edit") {
+                        Button("action_edit".localized()) {
                             editedContent = item.content
                             isEditing = true
                         }
                     }
                 }
             }
-            .alert("Delete Entry?", isPresented: $showDeleteConfirmation) {
-                Button("Cancel", role: .cancel) {}
-                Button("Delete", role: .destructive) {
+            .alert("delete_entry_alert_title".localized(), isPresented: $showDeleteConfirmation) {
+                Button("action_cancel".localized(), role: .cancel) {}
+                Button("action_delete".localized(), role: .destructive) {
                     onDelete()
                     dismiss()
                 }
             } message: {
-                Text("This will also delete any reflections from this entry. This action cannot be undone.")
+                Text("delete_entry_alert_message".localized())
             }
         }
     }

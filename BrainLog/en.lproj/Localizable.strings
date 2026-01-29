@@ -1,0 +1,72 @@
+/*
+  Localizable.strings (English)
+  BrainLog
+
+  Created by 橋本純一 on 2026/01/30.
+
+*/
+
+// MARK: - Tab Bar
+"tab_timeline" = "Timeline";
+"tab_settings" = "Settings";
+
+// MARK: - Main View
+"app_title" = "BrainLog";
+"no_entries_title" = "No entries yet";
+"no_entries_subtitle" = "Tap + to create your first commit";
+"commits_count" = "%d commits";
+
+// MARK: - Entry Actions
+"action_add_reflection" = "Add Reflection";
+"action_delete" = "Delete";
+"action_edit" = "Edit";
+"action_save" = "Save";
+"action_cancel" = "Cancel";
+"action_close" = "Close";
+"action_done" = "Done";
+
+// MARK: - New Entry
+"new_entry_title" = "New Entry";
+
+// MARK: - New Reflection
+"new_reflection_title" = "Add Reflection";
+"reflecting_on" = "Reflecting on:";
+"your_reflection" = "Your reflection:";
+"reflection_label" = "Reflection";
+
+// MARK: - Entry Detail
+"entry_detail_title" = "Entry Details";
+"delete_entry_button" = "Delete Entry";
+"delete_entry_alert_title" = "Delete Entry?";
+"delete_entry_alert_message" = "This will also delete any reflections from this entry. This action cannot be undone.";
+
+// MARK: - Help View
+"help_title" = "How to Use";
+"help_create_title" = "Create an Entry";
+"help_create_description" = "Tap the + button to create a new entry. Each entry is a snapshot of your thoughts at a moment in time.";
+"help_reflection_title" = "Add Reflection";
+"help_reflection_description" = "Long press on any entry to add a reflection. Reflections are for looking back - add insights, lessons learned, or how you feel about a past thought.";
+"help_view_title" = "View Details";
+"help_view_description" = "Tap on any commit to view its full content, edit it, or delete it.";
+"help_delete_title" = "Delete";
+"help_delete_description" = "Swipe left on an entry to delete it, or use the delete button in the detail view. Deleting an entry also removes its reflections.";
+"help_sync_title" = "iCloud Sync";
+"help_sync_description" = "Your entries are automatically synced across all your devices via iCloud.";
+
+// MARK: - Settings
+"settings_title" = "Settings";
+"settings_section_general" = "General";
+"settings_language" = "Language";
+"settings_language_footer" = "Restart the app for language changes to take effect.";
+"language_system" = "System Default";
+
+"settings_section_legal" = "Legal";
+"settings_terms" = "Terms of Service";
+"settings_privacy" = "Privacy Policy";
+
+"settings_section_about" = "About";
+"settings_version" = "Version";
+
+// MARK: - Widget
+"widget_no_commits" = "No commits yet";
+"widget_commits" = "commits";
