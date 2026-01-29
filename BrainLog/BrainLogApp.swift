@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 @main
 struct BrainLogApp: App {
@@ -17,6 +18,7 @@ struct BrainLogApp: App {
         let modelConfiguration = ModelConfiguration(
             schema: schema,
             isStoredInMemoryOnly: false,
+            groupContainer: .identifier("group.com.junichihashimoto.BrainLog"),
             cloudKitDatabase: .automatic
         )
 
@@ -30,6 +32,9 @@ struct BrainLogApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onDisappear {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
         }
         .modelContainer(sharedModelContainer)
     }

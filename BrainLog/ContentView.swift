@@ -14,7 +14,7 @@ struct ContentView: View {
     @Query(sort: \Item.createdAt, order: .reverse) private var items: [Item]
     @State private var showingNewEntry = false
     @State private var selectedItem: Item?
-    @State private var branchFromItem: Item?
+    @State private var reflectionFromItem: Item?
     @State private var showingHelp = false
 
     var body: some View {
@@ -46,8 +46,8 @@ struct ContentView: View {
             .sheet(isPresented: $showingNewEntry) {
                 NewEntryView(parentItem: nil)
             }
-            .sheet(item: $branchFromItem) { item in
-                NewEntryView(parentItem: item)
+            .sheet(item: $reflectionFromItem) { item in
+                NewReflectionView(parentItem: item)
             }
             .sheet(item: $selectedItem) { item in
                 EntryDetailView(item: item, onDelete: { deleteItem(item) })
@@ -93,7 +93,7 @@ struct ContentView: View {
                         hasBranch: hasBranches(for: item),
                         branches: getBranches(for: item),
                         onTap: { selectedItem = item },
-                        onBranch: { branchFromItem = item },
+                        onReflection: { reflectionFromItem = item },
                         onDelete: { deleteItem(item) }
                     )
                 }
@@ -146,15 +146,15 @@ struct HelpView: View {
                         helpSection(
                             icon: "plus.circle.fill",
                             iconColor: .green,
-                            title: "Create a Commit",
-                            description: "Tap the + button in the top right to create a new entry. Each entry is like a Git commit - a snapshot of your thoughts."
+                            title: "Create an Entry",
+                            description: "Tap the + button to create a new entry. Each entry is a snapshot of your thoughts at a moment in time."
                         )
 
                         helpSection(
-                            icon: "arrow.triangle.branch",
+                            icon: "bubble.left.and.text.bubble.right.fill",
                             iconColor: .purple,
-                            title: "Create a Branch",
-                            description: "Long press on any commit to create a branch. Branches let you explore related ideas or tangents from a main thought."
+                            title: "Add Reflection",
+                            description: "Long press on any entry to add a reflection. Reflections are for looking back - add insights, lessons learned, or how you feel about a past thought."
                         )
 
                         helpSection(
@@ -168,7 +168,7 @@ struct HelpView: View {
                             icon: "trash.fill",
                             iconColor: .red,
                             title: "Delete",
-                            description: "Swipe left on a commit to delete it, or use the delete button in the detail view. Deleting a commit also removes its branches."
+                            description: "Swipe left on an entry to delete it, or use the delete button in the detail view. Deleting an entry also removes its reflections."
                         )
 
                         helpSection(
@@ -229,7 +229,7 @@ struct CommitNodeView: View {
     let hasBranch: Bool
     let branches: [Item]
     let onTap: () -> Void
-    let onBranch: () -> Void
+    let onReflection: () -> Void
     let onDelete: () -> Void
 
     @Environment(\.colorScheme) private var colorScheme
@@ -242,10 +242,10 @@ struct CommitNodeView: View {
             mainCommitRow
 
             if hasBranch {
-                ForEach(Array(branches.enumerated()), id: \.element.id) { index, branch in
-                    BranchNodeView(
-                        item: branch,
-                        isLastBranch: index == branches.count - 1,
+                ForEach(Array(branches.enumerated()), id: \.element.id) { index, reflection in
+                    ReflectionNodeView(
+                        item: reflection,
+                        isLastReflection: index == branches.count - 1,
                         parentHasMore: !isLast,
                         onDelete: {}
                     )
@@ -264,8 +264,8 @@ struct CommitNodeView: View {
         .contentShape(Rectangle())
         .onTapGesture(perform: onTap)
         .contextMenu {
-            Button(action: onBranch) {
-                Label("Create Branch", systemImage: "arrow.triangle.branch")
+            Button(action: onReflection) {
+                Label("Add Reflection", systemImage: "bubble.left.and.text.bubble.right")
             }
             Button(role: .destructive, action: onDelete) {
                 Label("Delete", systemImage: "trash")
@@ -373,10 +373,10 @@ struct CommitNodeView: View {
     }
 }
 
-// MARK: - Branch Node View
-struct BranchNodeView: View {
+// MARK: - Reflection Node View
+struct ReflectionNodeView: View {
     let item: Item
-    let isLastBranch: Bool
+    let isLastReflection: Bool
     let parentHasMore: Bool
     let onDelete: () -> Void
 
@@ -389,8 +389,8 @@ struct BranchNodeView: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
-            branchGraphView
-            branchContentView
+            reflectionGraphView
+            reflectionContentView
                 .padding(.leading, 8)
             Spacer()
         }
@@ -402,7 +402,7 @@ struct BranchNodeView: View {
         }
     }
 
-    private var branchGraphView: some View {
+    private var reflectionGraphView: some View {
         ZStack(alignment: .topLeading) {
             // Vertical line continuing from parent (if parent has more commits below)
             if parentHasMore {
@@ -412,7 +412,7 @@ struct BranchNodeView: View {
                     .offset(x: 9)
             }
 
-            // Branch curve
+            // Reflection curve
             Path { path in
                 path.move(to: CGPoint(x: 10, y: 0))
                 path.addLine(to: CGPoint(x: 10, y: 15))
@@ -421,49 +421,37 @@ struct BranchNodeView: View {
                     control: CGPoint(x: 10, y: 30)
                 )
             }
-            .stroke(branchLineColor, lineWidth: lineWidth)
+            .stroke(reflectionLineColor, lineWidth: lineWidth)
 
-            // Branch node
-            Circle()
-                .fill(branchNodeColor)
-                .frame(width: nodeSize, height: nodeSize)
-                .offset(x: 30, y: 25)
+            // Reflection icon
+            Image(systemName: "bubble.left.fill")
+                .font(.system(size: 12))
+                .foregroundStyle(reflectionNodeColor)
+                .offset(x: 26, y: 22)
         }
         .frame(width: 50, height: 60)
     }
 
-    private var branchContentView: some View {
+    private var reflectionContentView: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(item.content)
-                .font(.system(.subheadline, design: .monospaced))
-                .foregroundStyle(primaryTextColor)
-                .lineLimit(1)
-
-            HStack(spacing: 8) {
-                Text(shortHash)
-                    .font(.system(.caption2, design: .monospaced))
-                    .foregroundStyle(hashColor)
-
-                Text(relativeDate)
+            HStack(spacing: 4) {
+                Text("Reflection")
                     .font(.caption2)
-                    .foregroundStyle(.secondary)
-
-                if let branchName = item.branchName {
-                    Text(branchName)
-                        .font(.caption2)
-                        .padding(.horizontal, 4)
-                        .padding(.vertical, 1)
-                        .background(branchBadgeColor)
-                        .foregroundStyle(branchTextColor)
-                        .clipShape(Capsule())
-                }
+                    .fontWeight(.medium)
+                    .foregroundStyle(reflectionNodeColor)
             }
+
+            Text(item.content)
+                .font(.system(.subheadline, design: .default))
+                .italic()
+                .foregroundStyle(primaryTextColor)
+                .lineLimit(2)
+
+            Text(relativeDate)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
         }
         .padding(.vertical, 8)
-    }
-
-    private var shortHash: String {
-        String(item.id.uuidString.prefix(7)).lowercased()
     }
 
     private var relativeDate: String {
@@ -472,11 +460,11 @@ struct BranchNodeView: View {
         return formatter.localizedString(for: item.createdAt, relativeTo: Date())
     }
 
-    private var branchNodeColor: Color {
+    private var reflectionNodeColor: Color {
         colorScheme == .dark ? Color(hex: "a371f7") : Color(hex: "8250df")
     }
 
-    private var branchLineColor: Color {
+    private var reflectionLineColor: Color {
         colorScheme == .dark ? Color(hex: "6e40c9") : Color(hex: "8250df")
     }
 
@@ -484,20 +472,8 @@ struct BranchNodeView: View {
         colorScheme == .dark ? Color(hex: "30363d") : Color(hex: "d0d7de")
     }
 
-    private var hashColor: Color {
-        colorScheme == .dark ? Color(hex: "58a6ff") : Color(hex: "0969da")
-    }
-
     private var primaryTextColor: Color {
         colorScheme == .dark ? .white : .black
-    }
-
-    private var branchBadgeColor: Color {
-        colorScheme == .dark ? Color(hex: "388bfd26") : Color(hex: "ddf4ff")
-    }
-
-    private var branchTextColor: Color {
-        colorScheme == .dark ? Color(hex: "58a6ff") : Color(hex: "0969da")
     }
 }
 
@@ -510,7 +486,6 @@ struct NewEntryView: View {
     let parentItem: Item?
 
     @State private var content = ""
-    @State private var branchName = ""
 
     var body: some View {
         NavigationStack {
@@ -519,12 +494,6 @@ struct NewEntryView: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: 20) {
-                    if parentItem != nil {
-                        TextField("Branch name (optional)", text: $branchName)
-                            .textFieldStyle(.roundedBorder)
-                            .font(.system(.body, design: .monospaced))
-                    }
-
                     TextEditor(text: $content)
                         .font(.system(.body, design: .monospaced))
                         .scrollContentBackground(.hidden)
@@ -539,14 +508,14 @@ struct NewEntryView: View {
                 }
                 .padding()
             }
-            .navigationTitle(parentItem == nil ? "New Commit" : "New Branch")
+            .navigationTitle("New Entry")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Commit") {
+                    Button("Save") {
                         saveEntry()
                     }
                     .disabled(content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
@@ -559,8 +528,8 @@ struct NewEntryView: View {
     private func saveEntry() {
         let newItem = Item(
             content: content.trimmingCharacters(in: .whitespacesAndNewlines),
-            parentID: parentItem?.id,
-            branchName: branchName.isEmpty ? nil : branchName
+            parentID: nil,
+            branchName: nil
         )
         modelContext.insert(newItem)
         dismiss()
@@ -576,6 +545,100 @@ struct NewEntryView: View {
 
     private var borderColor: Color {
         colorScheme == .dark ? Color(hex: "30363d") : Color(hex: "d0d7de")
+    }
+}
+
+// MARK: - New Reflection View
+struct NewReflectionView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
+
+    let parentItem: Item
+
+    @State private var content = ""
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                backgroundColor
+                    .ignoresSafeArea()
+
+                VStack(alignment: .leading, spacing: 16) {
+                    // Original entry preview
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Reflecting on:")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        Text(parentItem.content)
+                            .font(.system(.subheadline, design: .monospaced))
+                            .foregroundStyle(primaryTextColor)
+                            .lineLimit(3)
+                            .padding()
+                            .background(editorBackgroundColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+
+                    Text("Your reflection:")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+
+                    TextEditor(text: $content)
+                        .font(.system(.body, design: .default))
+                        .scrollContentBackground(.hidden)
+                        .background(editorBackgroundColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(reflectionColor.opacity(0.5), lineWidth: 1)
+                        )
+
+                    Spacer()
+                }
+                .padding()
+            }
+            .navigationTitle("Add Reflection")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        saveReflection()
+                    }
+                    .disabled(content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .fontWeight(.semibold)
+                }
+            }
+        }
+    }
+
+    private func saveReflection() {
+        let newItem = Item(
+            content: content.trimmingCharacters(in: .whitespacesAndNewlines),
+            parentID: parentItem.id,
+            branchName: nil
+        )
+        modelContext.insert(newItem)
+        dismiss()
+    }
+
+    private var backgroundColor: Color {
+        colorScheme == .dark ? Color(hex: "0d1117") : Color(hex: "ffffff")
+    }
+
+    private var editorBackgroundColor: Color {
+        colorScheme == .dark ? Color(hex: "161b22") : Color(hex: "f6f8fa")
+    }
+
+    private var primaryTextColor: Color {
+        colorScheme == .dark ? .white : .black
+    }
+
+    private var reflectionColor: Color {
+        colorScheme == .dark ? Color(hex: "a371f7") : Color(hex: "8250df")
     }
 }
 
@@ -621,7 +684,7 @@ struct EntryDetailView: View {
                             Button(role: .destructive) {
                                 showDeleteConfirmation = true
                             } label: {
-                                Label("Delete Commit", systemImage: "trash")
+                                Label("Delete Entry", systemImage: "trash")
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(.bordered)
@@ -630,7 +693,7 @@ struct EntryDetailView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Commit Details")
+            .navigationTitle("Entry Details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -651,14 +714,14 @@ struct EntryDetailView: View {
                     }
                 }
             }
-            .alert("Delete Commit?", isPresented: $showDeleteConfirmation) {
+            .alert("Delete Entry?", isPresented: $showDeleteConfirmation) {
                 Button("Cancel", role: .cancel) {}
                 Button("Delete", role: .destructive) {
                     onDelete()
                     dismiss()
                 }
             } message: {
-                Text("This will also delete any branches from this commit. This action cannot be undone.")
+                Text("This will also delete any reflections from this entry. This action cannot be undone.")
             }
         }
     }

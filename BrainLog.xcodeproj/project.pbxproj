@@ -6,8 +6,42 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B33BA4F02F2B9F950041E3A0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33BA4EF2F2B9F950041E3A0 /* WidgetKit.framework */; };
+		B33BA4F22F2B9F950041E3A0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33BA4F12F2B9F950041E3A0 /* SwiftUI.framework */; };
+		B33BA4FD2F2B9F960041E3A0 /* BrainLogWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B33BA4ED2F2B9F940041E3A0 /* BrainLogWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B33BA4FB2F2B9F960041E3A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B33BA4CE2F2B89C80041E3A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B33BA4EC2F2B9F940041E3A0;
+			remoteInfo = BrainLogWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B33BA5022F2B9F960041E3A0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B33BA4FD2F2B9F960041E3A0 /* BrainLogWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B33BA4D62F2B89C80041E3A0 /* BrainLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33BA4ED2F2B9F940041E3A0 /* BrainLogWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BrainLogWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33BA4EF2F2B9F950041E3A0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B33BA4F12F2B9F950041E3A0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B33BA5072F2BA2310041E3A0 /* BrainLogWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BrainLogWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -17,6 +51,13 @@
 				Info.plist,
 			);
 			target = B33BA4D52F2B89C80041E3A0 /* BrainLog */;
+		};
+		B33BA5012F2B9F960041E3A0 /* Exceptions for "BrainLogWidget" folder in "BrainLogWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B33BA4EC2F2B9F940041E3A0 /* BrainLogWidgetExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -29,6 +70,14 @@
 			path = BrainLog;
 			sourceTree = "<group>";
 		};
+		B33BA4F32F2B9F950041E3A0 /* BrainLogWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B33BA5012F2B9F960041E3A0 /* Exceptions for "BrainLogWidget" folder in "BrainLogWidgetExtension" target */,
+			);
+			path = BrainLogWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,13 +88,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B33BA4EA2F2B9F940041E3A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B33BA4F22F2B9F950041E3A0 /* SwiftUI.framework in Frameworks */,
+				B33BA4F02F2B9F950041E3A0 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B33BA4CD2F2B89C80041E3A0 = {
 			isa = PBXGroup;
 			children = (
+				B33BA5072F2BA2310041E3A0 /* BrainLogWidgetExtension.entitlements */,
 				B33BA4D82F2B89C80041E3A0 /* BrainLog */,
+				B33BA4F32F2B9F950041E3A0 /* BrainLogWidget */,
+				B33BA4EE2F2B9F950041E3A0 /* Frameworks */,
 				B33BA4D72F2B89C80041E3A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,8 +115,18 @@
 			isa = PBXGroup;
 			children = (
 				B33BA4D62F2B89C80041E3A0 /* BrainLog.app */,
+				B33BA4ED2F2B9F940041E3A0 /* BrainLogWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B33BA4EE2F2B9F950041E3A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B33BA4EF2F2B9F950041E3A0 /* WidgetKit.framework */,
+				B33BA4F12F2B9F950041E3A0 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,10 +139,12 @@
 				B33BA4D22F2B89C80041E3A0 /* Sources */,
 				B33BA4D32F2B89C80041E3A0 /* Frameworks */,
 				B33BA4D42F2B89C80041E3A0 /* Resources */,
+				B33BA5022F2B9F960041E3A0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B33BA4FC2F2B9F960041E3A0 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				B33BA4D82F2B89C80041E3A0 /* BrainLog */,
@@ -82,6 +155,28 @@
 			productName = BrainLog;
 			productReference = B33BA4D62F2B89C80041E3A0 /* BrainLog.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B33BA4EC2F2B9F940041E3A0 /* BrainLogWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B33BA4FE2F2B9F960041E3A0 /* Build configuration list for PBXNativeTarget "BrainLogWidgetExtension" */;
+			buildPhases = (
+				B33BA4E92F2B9F940041E3A0 /* Sources */,
+				B33BA4EA2F2B9F940041E3A0 /* Frameworks */,
+				B33BA4EB2F2B9F940041E3A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B33BA4F32F2B9F950041E3A0 /* BrainLogWidget */,
+			);
+			name = BrainLogWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = BrainLogWidgetExtension;
+			productReference = B33BA4ED2F2B9F940041E3A0 /* BrainLogWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -94,6 +189,9 @@
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					B33BA4D52F2B89C80041E3A0 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					B33BA4EC2F2B9F940041E3A0 = {
 						CreatedOnToolsVersion = 26.0;
 					};
 				};
@@ -113,12 +211,20 @@
 			projectRoot = "";
 			targets = (
 				B33BA4D52F2B89C80041E3A0 /* BrainLog */,
+				B33BA4EC2F2B9F940041E3A0 /* BrainLogWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B33BA4D42F2B89C80041E3A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33BA4EB2F2B9F940041E3A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +241,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B33BA4E92F2B9F940041E3A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B33BA4FC2F2B9F960041E3A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B33BA4EC2F2B9F940041E3A0 /* BrainLogWidgetExtension */;
+			targetProxy = B33BA4FB2F2B9F960041E3A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B33BA4E52F2B89C90041E3A0 /* Debug */ = {
@@ -327,6 +448,68 @@
 			};
 			name = Release;
 		};
+		B33BA4FF2F2B9F960041E3A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = BrainLogWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42BPZX28NR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BrainLogWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BrainLogWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junichihashimoto.CommitLog.BrainLog.BrainLogWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B33BA5002F2B9F960041E3A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = BrainLogWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42BPZX28NR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BrainLogWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BrainLogWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junichihashimoto.CommitLog.BrainLog.BrainLogWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +527,15 @@
 			buildConfigurations = (
 				B33BA4E52F2B89C90041E3A0 /* Debug */,
 				B33BA4E62F2B89C90041E3A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B33BA4FE2F2B9F960041E3A0 /* Build configuration list for PBXNativeTarget "BrainLogWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B33BA4FF2F2B9F960041E3A0 /* Debug */,
+				B33BA5002F2B9F960041E3A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
