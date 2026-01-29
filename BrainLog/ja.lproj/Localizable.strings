@@ -23,7 +23,7 @@
 "action_save" = "保存";
 "action_cancel" = "キャンセル";
 "action_close" = "閉じる";
-"action_done" = "完了";
+"action_done" = "done";
 
 // MARK: - New Entry
 "new_entry_title" = "新規エントリー";
@@ -70,3 +70,21 @@
 // MARK: - Widget
 "widget_no_commits" = "コミットがありません";
 "widget_commits" = "コミット";
+
+// MARK: - Onboarding
+"onboarding_title_1" = "勉強、仕事、コミュニケーションうまく行かないことがありませんか？";
+"onboarding_desc_1" = "思い通りにいかないことは誰にでもあります。";
+
+"onboarding_title_2" = "いつも脳死で１日過ごしているのかもしれません？";
+"onboarding_desc_2" = "意識することが必要です。";
+
+"onboarding_title_3" = "１日の終わりに今日うまくいかなかったことを振り返りましょう";
+"onboarding_desc_3" = "毎日の終わりに少し立ち止まって振り返る時間を。";
+
+"onboarding_title_4" = "その日の状況を記録してコミットします";
+"onboarding_desc_4" = "あなたのためのジャーナリングをしましょう。";
+"onboarding_subdesc_4" = "ジャーナリング（Journaling）は、頭に浮かんだ思考や感情をありのままに紙へ書き出す「書く瞑想」です。";
+
+"onboarding_back" = "戻る";
+"onboarding_next" = "次へ";
+"onboarding_start" = "はじめる";

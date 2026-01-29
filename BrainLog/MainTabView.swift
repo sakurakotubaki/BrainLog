@@ -1,10 +1,3 @@
-//
-//  MainTabView.swift
-//  BrainLog
-//
-//  Created by 橋本純一 on 2026/01/30.
-//
-
 import SwiftUI
 import SwiftData
 
