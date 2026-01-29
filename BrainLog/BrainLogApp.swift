@@ -1,16 +1,11 @@
-//
-//  BrainLogApp.swift
-//  BrainLog
-//
-//  Created by 橋本純一 on 2026/01/29.
-//
-
 import SwiftUI
 import SwiftData
 import WidgetKit
 
 @main
 struct BrainLogApp: App {
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -31,10 +26,14 @@ struct BrainLogApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-                .onDisappear {
-                    WidgetCenter.shared.reloadAllTimelines()
-                }
+            if hasCompletedOnboarding {
+                MainTabView()
+                    .onDisappear {
+                        WidgetCenter.shared.reloadAllTimelines()
+                    }
+            } else {
+                OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+            }
         }
         .modelContainer(sharedModelContainer)
     }

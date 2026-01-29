@@ -70,3 +70,21 @@
 // MARK: - Widget
 "widget_no_commits" = "No commits yet";
 "widget_commits" = "commits";
+
+// MARK: - Onboarding
+"onboarding_title_1" = "Having trouble with study, work, or communication?";
+"onboarding_desc_1" = "Sometimes things just don't go the way we planned.";
+
+"onboarding_title_2" = "Maybe you're just going through the day on autopilot?";
+"onboarding_desc_2" = "Being mindful and conscious of your actions is essential.";
+
+"onboarding_title_3" = "Reflect on what didn't go well today";
+"onboarding_desc_3" = "At the end of each day, take a moment to look back.";
+
+"onboarding_title_4" = "Record your day and commit it";
+"onboarding_desc_4" = "Start journaling for yourself.";
+"onboarding_subdesc_4" = "Journaling is a form of \"writing meditation\" where you write down your thoughts and feelings as they come.";
+
+"onboarding_back" = "Back";
+"onboarding_next" = "Next";
+"onboarding_start" = "Get Started";

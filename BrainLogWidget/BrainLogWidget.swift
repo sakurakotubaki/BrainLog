@@ -1,10 +1,3 @@
-//
-//  BrainLogWidget.swift
-//  BrainLogWidget
-//
-//  Created by 橋本純一 on 2026/01/29.
-//
-
 import WidgetKit
 import SwiftUI
 import SwiftData
