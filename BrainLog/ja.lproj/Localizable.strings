@@ -1,0 +1,72 @@
+/*
+  Localizable.strings (Japanese)
+  BrainLog
+
+  Created by 橋本純一 on 2026/01/30.
+
+*/
+
+// MARK: - Tab Bar
+"tab_timeline" = "タイムライン";
+"tab_settings" = "設定";
+
+// MARK: - Main View
+"app_title" = "BrainLog";
+"no_entries_title" = "エントリーがありません";
+"no_entries_subtitle" = "+ をタップして最初のコミットを作成";
+"commits_count" = "%d コミット";
+
+// MARK: - Entry Actions
+"action_add_reflection" = "振り返りを追加";
+"action_delete" = "削除";
+"action_edit" = "編集";
+"action_save" = "保存";
+"action_cancel" = "キャンセル";
+"action_close" = "閉じる";
+"action_done" = "完了";
+
+// MARK: - New Entry
+"new_entry_title" = "新規エントリー";
+
+// MARK: - New Reflection
+"new_reflection_title" = "振り返りを追加";
+"reflecting_on" = "振り返り対象:";
+"your_reflection" = "あなたの振り返り:";
+"reflection_label" = "振り返り";
+
+// MARK: - Entry Detail
+"entry_detail_title" = "エントリー詳細";
+"delete_entry_button" = "エントリーを削除";
+"delete_entry_alert_title" = "エントリーを削除しますか？";
+"delete_entry_alert_message" = "このエントリーに関連する振り返りも削除されます。この操作は取り消せません。";
+
+// MARK: - Help View
+"help_title" = "使い方";
+"help_create_title" = "エントリーを作成";
+"help_create_description" = "+ ボタンをタップして新しいエントリーを作成します。各エントリーはその瞬間の思考のスナップショットです。";
+"help_reflection_title" = "振り返りを追加";
+"help_reflection_description" = "エントリーを長押しして振り返りを追加します。振り返りは過去を見つめ直すためのもの - 気づき、学んだこと、過去の考えに対する今の気持ちを記録しましょう。";
+"help_view_title" = "詳細を見る";
+"help_view_description" = "コミットをタップして全文を表示、編集、または削除できます。";
+"help_delete_title" = "削除";
+"help_delete_description" = "エントリーを左にスワイプして削除、または詳細画面の削除ボタンを使用します。エントリーを削除すると関連する振り返りも削除されます。";
+"help_sync_title" = "iCloud同期";
+"help_sync_description" = "エントリーはiCloudを通じてすべてのデバイスで自動的に同期されます。";
+
+// MARK: - Settings
+"settings_title" = "設定";
+"settings_section_general" = "一般";
+"settings_language" = "言語";
+"settings_language_footer" = "言語の変更を反映するにはアプリを再起動してください。";
+"language_system" = "システム設定に従う";
+
+"settings_section_legal" = "法的情報";
+"settings_terms" = "利用規約";
+"settings_privacy" = "プライバシーポリシー";
+
+"settings_section_about" = "アプリについて";
+"settings_version" = "バージョン";
+
+// MARK: - Widget
+"widget_no_commits" = "コミットがありません";
+"widget_commits" = "コミット";
