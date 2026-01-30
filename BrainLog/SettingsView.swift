@@ -24,7 +24,7 @@ struct SettingsView: View {
 
                     // Legal Section
                     Section {
-                        Link(destination: URL(string: "https://example.com/terms")!) {
+                        Link(destination: URL(string: "https://pacific-sandalwood-6de.notion.site/2f8a1df91a0780d09697d13cdc7f7fcd")!) {
                             HStack {
                                 Text("settings_terms".localized())
                                     .foregroundStyle(primaryTextColor)
@@ -35,7 +35,7 @@ struct SettingsView: View {
                             }
                         }
 
-                        Link(destination: URL(string: "https://example.com/privacy")!) {
+                        Link(destination: URL(string: "https://pacific-sandalwood-6de.notion.site/2f8a1df91a0780f7b85cdbba9abdbbab")!) {
                             HStack {
                                 Text("settings_privacy".localized())
                                     .foregroundStyle(primaryTextColor)
