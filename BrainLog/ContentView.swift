@@ -67,12 +67,6 @@ struct ContentView: View {
             Text("no_entries_subtitle".localized())
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-
-            Button(action: { showingHelp = true }) {
-                Label("help_title".localized(), systemImage: "questionmark.circle")
-                    .font(.subheadline)
-            }
-            .padding(.top, 8)
         }
     }
 

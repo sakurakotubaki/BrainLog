@@ -64,6 +64,14 @@
 "settings_terms" = "利用規約";
 "settings_privacy" = "プライバシーポリシー";
 
+"settings_section_notification" = "通知";
+"settings_notification_enabled" = "毎日のリマインダー";
+"settings_notification_time" = "リマインダー時刻";
+"settings_notification_footer" = "毎日の振り返りを忘れないようにリマインドします。";
+"settings_notification_permission_title" = "通知の許可が必要です";
+"settings_notification_permission_message" = "毎日のリマインダーを受け取るには、設定で通知を有効にしてください。";
+"settings_open_settings" = "設定を開く";
+
 "settings_section_about" = "アプリについて";
 "settings_version" = "バージョン";
 
@@ -88,3 +96,7 @@
 "onboarding_back" = "戻る";
 "onboarding_next" = "次へ";
 "onboarding_start" = "はじめる";
+
+// MARK: - Notifications
+"notification_title" = "振り返りの時間です";
+"notification_body" = "今日の1日を振り返って、あなたの思考を記録しましょう。";

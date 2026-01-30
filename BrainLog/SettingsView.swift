@@ -3,6 +3,8 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.colorScheme) private var colorScheme
     @State private var languageManager = LanguageManager.shared
+    @State private var notificationManager = NotificationManager.shared
+    @State private var showingPermissionAlert = false
 
     var body: some View {
         NavigationStack {
@@ -20,6 +22,38 @@ struct SettingsView: View {
                         }
                     } header: {
                         Text("settings_section_general".localized())
+                    }
+
+                    // Notification Section
+                    Section {
+                        Toggle("settings_notification_enabled".localized(), isOn: Binding(
+                            get: { notificationManager.isEnabled },
+                            set: { newValue in
+                                if newValue {
+                                    notificationManager.requestPermission { granted in
+                                        if granted {
+                                            notificationManager.isEnabled = true
+                                        } else {
+                                            showingPermissionAlert = true
+                                        }
+                                    }
+                                } else {
+                                    notificationManager.isEnabled = false
+                                }
+                            }
+                        ))
+
+                        if notificationManager.isEnabled {
+                            DatePicker(
+                                "settings_notification_time".localized(),
+                                selection: $notificationManager.notificationTime,
+                                displayedComponents: .hourAndMinute
+                            )
+                        }
+                    } header: {
+                        Text("settings_section_notification".localized())
+                    } footer: {
+                        Text("settings_notification_footer".localized())
                     }
 
                     // Legal Section
@@ -65,6 +99,16 @@ struct SettingsView: View {
                 .scrollContentBackground(.hidden)
             }
             .navigationTitle("settings_title".localized())
+            .alert("settings_notification_permission_title".localized(), isPresented: $showingPermissionAlert) {
+                Button("action_cancel".localized(), role: .cancel) {}
+                Button("settings_open_settings".localized()) {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            } message: {
+                Text("settings_notification_permission_message".localized())
+            }
         }
     }
 
