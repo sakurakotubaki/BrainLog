@@ -10,6 +10,9 @@ struct ContentView: View {
     @State private var reflectionFromItem: Item?
     @State private var showingHelp = false
     @State private var languageManager = LanguageManager.shared
+    @State private var tutorialManager = TutorialManager.shared
+    @State private var showTutorial = false
+    @State private var helpButtonFrame: CGRect = .zero
 
     var body: some View {
         NavigationStack {
@@ -29,12 +32,39 @@ struct ContentView: View {
                     Button(action: { showingHelp = true }) {
                         Image(systemName: "questionmark.circle")
                     }
+                    .background(
+                        GeometryReader { geometry in
+                            Color.clear
+                                .onAppear {
+                                    helpButtonFrame = geometry.frame(in: .global)
+                                }
+                        }
+                    )
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { showingNewEntry = true }) {
                         Image(systemName: "plus")
                             .fontWeight(.semibold)
                     }
+                }
+            }
+            .onAppear {
+                if !tutorialManager.hasSeenTutorial {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        showTutorial = true
+                    }
+                }
+            }
+            .overlay {
+                if showTutorial {
+                    SpotlightTutorialView(
+                        targetFrame: helpButtonFrame,
+                        message: "tutorial_help_button_message".localized(),
+                        onDismiss: {
+                            showTutorial = false
+                            tutorialManager.markTutorialAsSeen()
+                        }
+                    )
                 }
             }
             .sheet(isPresented: $showingNewEntry) {

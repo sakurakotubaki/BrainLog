@@ -1,0 +1,57 @@
+{
+  "fill-specializations" : [
+    {
+      "value" : {
+        "automatic-gradient" : "display-p3:0.10371,0.23689,0.43541,1.00000"
+      }
+    },
+    {
+      "appearance" : "dark",
+      "value" : {
+        "automatic-gradient" : "display-p3:0.03901,0.08911,0.16379,1.00000"
+      }
+    }
+  ],
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "image-name" : "bfont.png",
+          "name" : "bfont",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              17.515625,
+              311.6484375
+            ]
+          }
+        },
+        {
+          "image-name" : "memo.png",
+          "name" : "memo",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              70.3671875,
+              -47.00390625
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
