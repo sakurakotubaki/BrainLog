@@ -64,6 +64,14 @@
 "settings_terms" = "Terms of Service";
 "settings_privacy" = "Privacy Policy";
 
+"settings_section_notification" = "Notification";
+"settings_notification_enabled" = "Daily Reminder";
+"settings_notification_time" = "Reminder Time";
+"settings_notification_footer" = "Get a daily reminder to reflect on your day.";
+"settings_notification_permission_title" = "Notification Permission Required";
+"settings_notification_permission_message" = "Please enable notifications in Settings to receive daily reminders.";
+"settings_open_settings" = "Open Settings";
+
 "settings_section_about" = "About";
 "settings_version" = "Version";
 
@@ -88,3 +96,7 @@
 "onboarding_back" = "Back";
 "onboarding_next" = "Next";
 "onboarding_start" = "Get Started";
+
+// MARK: - Notifications
+"notification_title" = "Time to Reflect";
+"notification_body" = "Take a moment to look back on your day and record your thoughts.";
