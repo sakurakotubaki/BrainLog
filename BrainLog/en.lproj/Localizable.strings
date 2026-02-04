@@ -72,6 +72,10 @@
 "settings_notification_permission_message" = "Please enable notifications in Settings to receive daily reminders.";
 "settings_open_settings" = "Open Settings";
 
+"settings_section_icloud" = "iCloud";
+"settings_icloud_video_enabled" = "iCloud Sync";
+"settings_icloud_video_footer" = "When enabled, your data will be saved to iCloud and synced across all your devices.";
+
 "settings_section_about" = "About";
 "settings_version" = "Version";
 
@@ -100,3 +104,7 @@
 // MARK: - Notifications
 "notification_title" = "Time to Reflect";
 "notification_body" = "Take a moment to look back on your day and record your thoughts.";
+
+// MARK: - Tutorial
+"tutorial_help_button_message" = "Tap here to learn how to use the app";
+"tutorial_got_it" = "Got it";

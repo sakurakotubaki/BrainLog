@@ -72,6 +72,10 @@
 "settings_notification_permission_message" = "毎日のリマインダーを受け取るには、設定で通知を有効にしてください。";
 "settings_open_settings" = "設定を開く";
 
+"settings_section_icloud" = "iCloud";
+"settings_icloud_video_enabled" = "iCloud同期";
+"settings_icloud_video_footer" = "ONにするとデータがiCloudに保存され、すべてのデバイスで同期されます。";
+
 "settings_section_about" = "アプリについて";
 "settings_version" = "バージョン";
 
@@ -100,3 +104,7 @@
 // MARK: - Notifications
 "notification_title" = "振り返りの時間です";
 "notification_body" = "今日の1日を振り返って、あなたの思考を記録しましょう。";
+
+// MARK: - Tutorial
+"tutorial_help_button_message" = "ここをタップするとアプリの使い方を確認できます";
+"tutorial_got_it" = "OK";
