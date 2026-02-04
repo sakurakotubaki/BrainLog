@@ -4,6 +4,7 @@ struct SettingsView: View {
     @Environment(\.colorScheme) private var colorScheme
     @State private var languageManager = LanguageManager.shared
     @State private var notificationManager = NotificationManager.shared
+    @State private var iCloudVideoManager = iCloudSyncManager.shared
     @State private var showingPermissionAlert = false
 
     var body: some View {
@@ -54,6 +55,15 @@ struct SettingsView: View {
                         Text("settings_section_notification".localized())
                     } footer: {
                         Text("settings_notification_footer".localized())
+                    }
+
+                    // iCloud Section
+                    Section {
+                        Toggle("settings_icloud_video_enabled".localized(), isOn: $iCloudVideoManager.isEnabled)
+                    } header: {
+                        Text("settings_section_icloud".localized())
+                    } footer: {
+                        Text("settings_icloud_video_footer".localized())
                     }
 
                     // Legal Section
